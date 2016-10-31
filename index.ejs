@@ -15,8 +15,8 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
 
-    <% for (key in htmlWebpackPlugin.options.meta) { %>
-    <meta content="<%= htmlWebpackPlugin.options.meta[key] %>" name="<%= key %>">
+    <% for (item of htmlWebpackPlugin.options.meta) { %>
+    <meta<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %>>
     <% } %>
 
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -30,8 +30,8 @@
     <% } %>
 
     <% for (item of htmlWebpackPlugin.options.links) { %>
-    <% if (typeof item === 'string' || item instanceof String) { item = { href: item, rel: 'stylesheet' } } %>
-  	<link<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %>>
+    <% if (typeof item === 'string' || item instanceof String) { item = { href: item, type: 'stylesheet' } } %>
+  	<link<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %> />
     <% } %>
 
     <% for (key in htmlWebpackPlugin.files.css) { %>
